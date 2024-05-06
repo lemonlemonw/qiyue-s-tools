@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>七月的杂货铺</title>
+</head>
+<body>
+    <p>格式化工具</p>
+    <textarea id="inputTextarea" rows="50" cols="50"></textarea>
+    <button onclick="formatSting()">点击我</button>
+    <textarea id="outputTextarea" rows="50" cols="50"></textarea>
+</body>
+
+<script>
+    // 页面加载时，获取之前保存的内容并设置为textarea的value属性值
+    window.onload = function() {
+        var savedContent = localStorage.getItem('inputContent');
+        if (savedContent) {
+            document.getElementById('inputTextarea').value = savedContent;
+        }
+    };
+
+    function formatSting() {
+// {"errorDetails":[{"rowIndex":0,"goodsName":"把子肉粉料","goodsId":9000010024,"productionDate":1714492800000,"goodsSn":"ZBWP0593"}]}', notifyDTOs=null}
+        var inputVal = document.getElementById('inputTextarea').value;
+        formartedString = doFormatString(inputVal);
+        document.getElementById('outputTextarea').value = formartedString;
+
+        localStorage.setItem('inputContent', inputVal);
+    }
+
+    function doFormatString(inputVal) {
+        const collection1 = new Set(['{', '(', '[']);
+        const collection2 = new Set(['}', ')', ']']);
+        const collection3 = new Set([',']);
+        var resp = "";
+
+        var indentDepth = 0;
+        var indentChar = '  '
+        var linefeedChar = '\n'
+
+        for (var i = 0; i < inputVal.length; i++) {
+            var curChar = inputVal.charAt(i);
+
+            if (collection1.has(curChar)) {
+                indentDepth++;
+                resp = resp + curChar + linefeedChar + generateChars(indentDepth, indentChar);
+
+                continue;
+            }
+
+            if (collection2.has(curChar)) {
+                indentDepth--;
+                resp = resp  + linefeedChar + generateChars(indentDepth, indentChar) + curChar;
+                continue;
+            }
+
+            resp = resp + curChar;
+            if (collection3.has(curChar)) {
+                resp = resp + linefeedChar + generateChars(indentDepth, indentChar);
+            }
+        }
+        return resp;
+    }
+
+
+    function generateChars(n, char) {
+        if (n <= 0) {
+            return "";
+        }
+        return new Array(n).fill(char).join('');
+    }
+</script>
+</html>
