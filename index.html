@@ -6,9 +6,9 @@
 </head>
 <body>
     <p>格式化工具</p>
-    <textarea id="inputTextarea" rows="50" cols="50"></textarea>
+    <textarea id="inputTextarea" rows="50" cols="70"></textarea>
     <button onclick="formatSting()">点击我</button>
-    <textarea id="outputTextarea" rows="50" cols="50"></textarea>
+    <textarea id="outputTextarea" rows="50" cols="100"></textarea>
 </body>
 
 <script>
@@ -21,7 +21,6 @@
     };
 
     function formatSting() {
-// {"errorDetails":[{"rowIndex":0,"goodsName":"把子肉粉料","goodsId":9000010024,"productionDate":1714492800000,"goodsSn":"ZBWP0593"}]}', notifyDTOs=null}
         var inputVal = document.getElementById('inputTextarea').value;
         formartedString = doFormatString(inputVal);
         document.getElementById('outputTextarea').value = formartedString;
