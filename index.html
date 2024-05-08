@@ -32,31 +32,37 @@
         const collection1 = new Set(['{', '(', '[']);
         const collection2 = new Set(['}', ')', ']']);
         const collection3 = new Set([',']);
-        var resp = "";
+        const QuotationMarkSet = new Set(['\'', "\""]);
 
-        var indentDepth = 0;
         var indentChar = '  '
         var linefeedChar = '\n'
 
+        var curDepth = 0;
+        var resp = "";
+        var hasLestQuotation = false;
         for (var i = 0; i < inputVal.length; i++) {
             var curChar = inputVal.charAt(i);
 
             if (collection1.has(curChar)) {
-                indentDepth++;
-                resp = resp + curChar + linefeedChar + generateChars(indentDepth, indentChar);
+                curDepth++;
+                resp = resp + curChar + linefeedChar + generateChars(curDepth, indentChar);
 
                 continue;
             }
 
             if (collection2.has(curChar)) {
-                indentDepth--;
-                resp = resp  + linefeedChar + generateChars(indentDepth, indentChar) + curChar;
+                curDepth--;
+                resp = resp  + linefeedChar + generateChars(curDepth, indentChar) + curChar;
                 continue;
             }
 
             resp = resp + curChar;
-            if (collection3.has(curChar)) {
-                resp = resp + linefeedChar + generateChars(indentDepth, indentChar);
+            if (collection3.has(curChar)
+                && !hasLestQuotation) {
+                resp = resp + linefeedChar + generateChars(curDepth, indentChar);
+            }
+            if (QuotationMarkSet.has(curChar)) {
+                hasLestQuotation = !hasLestQuotation;
             }
         }
         return resp;
