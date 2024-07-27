@@ -5,7 +5,6 @@ function picktool(toolId) {
 
     // 取消之前选中工具的高亮
     var prePickedToolId = localStorage.getItem('curtool');
-    console.log(prePickedToolId)
     if (prePickedToolId != null) {
         document.getElementById(prePickedToolId).classList.remove('highlight');
     }
