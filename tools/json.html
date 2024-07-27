@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/tools.js"></script>
+</head>
+<body>
+    <div></div>
+    <div class="toolnotice">
+        工具介绍：支持标准JSON格式、toString格式的数据格式化
+    </div>
+    <div class="jsontool">
+        <div class="jsontoolbox">
+            <div>输入</div>
+            <textarea id="inputTextarea" rows="50" style="width: 100%"></textarea>
+        </div>
+        <button onclick="formatSting()" class="clickbutton">格式化</button>
+        <div class="jsontoolbox">
+            <div>输出</div>
+            <textarea id="outputTextarea" rows="50" style="width: 100%"></textarea>
+        </div>
+    </div>
+</body>
+<script>
+    $(document).ready(function() {
+        // 1 获取之前保存的内容并设置为textarea的value属性值
+        var savedContent = localStorage.getItem('inputContent');
+        if (savedContent) {
+            document.getElementById('inputTextarea').value = savedContent;
+        }
+    });
+</script>
+</html>

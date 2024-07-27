@@ -3,78 +3,85 @@
 <head>
     <meta charset="UTF-8">
     <title>七月的杂货铺</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/tools.js"></script>
+    <script src="http://code.jquery.com/jquery-1.8.0.min.js"></script>
 </head>
 <body>
-    <p>格式化工具</p>
     <p>交流群(七月的杂货铺): 439510741(QQ)</p>
-    <textarea id="inputTextarea" rows="50" cols="70"></textarea>
-    <button onclick="formatSting()">点击我</button>
-    <textarea id="outputTextarea" rows="50" cols="100"></textarea>
+    <div class="navigation">
+        <ul class="siterow">
+            <li class="siterowitem">
+                <a class="sitecategorylink" target="_blank">常用</a>
+            </li>
+            <li class="siterowitem">
+                <a class="sitelink" href="https://www.baidu.com" target="_blank">百度</a>
+            </li>
+            <li class="siterowitem">
+                <a class="sitelink" href="https://github.com" target="_blank">github</a>
+            </li>
+            <li class="siterowitem">
+                <a class="sitelink" href="https://www.csdn.net/" target="_blank">CSDN</a>
+            </li>
+            <li class="siterowitem">
+                <a class="sitelink" href="https://juejin.cn/" target="_blank">稀土掘金</a>
+            </li>
+        </ul>
+
+        <ul class="siterow">
+            <li class="siterowitem">
+                <a class="sitecategorylink" href="https://github.com" target="_blank">后端</a>
+            </li>
+            <li class="siterowitem">
+                <a class="sitelink" href="https://spring.io/" target="_blank">spring</a>
+            </li>
+            <li class="siterowitem">
+                <a class="sitelink" href="https://www.elastic.co/cn/" target="_blank">elastic</a>
+            </li>
+            <li class="siterowitem">
+                <a class="sitelink" href="https://www.runoob.com//" target="_blank">菜鸟教程</a>
+            </li>
+        </ul>
+
+        <ul class="siterow">
+            <li class="siterowitem">
+                <a class="sitecategorylink" href="https://github.com" target="_blank">前端</a>
+            </li>
+            <li class="siterowitem">
+                <a class="sitelink" href="https://www.w3cschool.cn/" target="_blank">w3cschool</a>
+            </li>
+            <li class="siterowitem">
+                <a class="sitelink" href="https://www.runoob.com//" target="_blank">菜鸟教程</a>
+            </li>
+        </ul>
+
+        <ul class="siterow">
+            <li class="siterowitem">
+                <a class="sitecategorylink" target="_blank">工具</a>
+            </li>
+            <li class="siterowitem" onclick="picktool(event.target.id)">
+                <a id="jsontool" class="sitelink">JSON</a>
+            </li>
+            <li class="siterowitem" onclick="picktool(event.target.id)">
+                <a id="pomodorotechniquetool" class="sitelink">番茄工作法</a>
+            </li>
+        </ul>
+    </div>
+
+    <div style="display: flex; justify-content: center;">
+        <div class="tools" >
+            <hr>
+            <div id="curtool"></div>
+        </div>
+    </div>
 </body>
 
 <script>
-    // 页面加载时，获取之前保存的内容并设置为textarea的value属性值
+    // 页面加载时，初始化数据
     window.onload = function() {
-        var savedContent = localStorage.getItem('inputContent');
-        if (savedContent) {
-            document.getElementById('inputTextarea').value = savedContent;
-        }
+        // 1 获取之前最近用过的工具
+        var curtoolId = localStorage.getItem('curtool');
+        picktool(curtoolId);
     };
-
-    function formatSting() {
-        var inputVal = document.getElementById('inputTextarea').value;
-        formartedString = doFormatString(inputVal);
-        document.getElementById('outputTextarea').value = formartedString;
-
-        localStorage.setItem('inputContent', inputVal);
-    }
-
-    function doFormatString(inputVal) {
-        const collection1 = new Set(['{', '(', '[']);
-        const collection2 = new Set(['}', ')', ']']);
-        const collection3 = new Set([',']);
-        const QuotationMarkSet = new Set(['\'', "\""]);
-
-        var indentChar = '  '
-        var linefeedChar = '\n'
-
-        var curDepth = 0;
-        var resp = "";
-        var hasLestQuotation = false;
-        for (var i = 0; i < inputVal.length; i++) {
-            var curChar = inputVal.charAt(i);
-
-            if (collection1.has(curChar)) {
-                curDepth++;
-                resp = resp + curChar + linefeedChar + generateChars(curDepth, indentChar);
-
-                continue;
-            }
-
-            if (collection2.has(curChar)) {
-                curDepth--;
-                resp = resp  + linefeedChar + generateChars(curDepth, indentChar) + curChar;
-                continue;
-            }
-
-            resp = resp + curChar;
-            if (collection3.has(curChar)
-                && !hasLestQuotation) {
-                resp = resp + linefeedChar + generateChars(curDepth, indentChar);
-            }
-            if (QuotationMarkSet.has(curChar)) {
-                hasLestQuotation = !hasLestQuotation;
-            }
-        }
-        return resp;
-    }
-
-
-    function generateChars(n, char) {
-        if (n <= 0) {
-            return "";
-        }
-        return new Array(n).fill(char).join('');
-    }
 </script>
 </html>

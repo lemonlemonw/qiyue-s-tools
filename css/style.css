@@ -1,0 +1,77 @@
+.navigation {
+    padding-left: 3%;
+}
+
+.siterow {
+    list-style-type: none;
+    display: flex;
+}
+.siterowitem {
+    width: 150px
+}
+.sitecategorylink {
+    color: mediumspringgreen;
+    font-size: 20px;
+}
+.sitelink {
+    display: block;
+    width: 80%;
+    color: black;
+    font-size: 20px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.highlight {
+    color: orangered;
+}
+.sitelink:hover{
+    color: orangered;
+    overflow: visible;
+    /*text-overflow: ;*/
+}
+a {
+    text-decoration: none; /* 去掉下划线 */
+    outline: none; /* 去掉焦点边框 */
+}
+
+.clickbutton {
+    background-color: #4CAF50; /* 按钮背景颜色 */
+    border: none;
+    color: white; /* 文字颜色 */
+    padding: 15px 32px; /* 内边距 */
+    text-align: center; /* 文字居中 */
+    text-decoration: none;
+    display: inline-block; /* 使其成为行内块元素 */
+    font-size: 16px; /* 字体大小 */
+    margin: 4px 2px; /* 外边距 */
+    cursor: pointer; /* 鼠标光标变为点击手势 */
+    border-radius: 5px; /* 边框圆角 */
+    transition: box-shadow 0.3s, transform 0.3s; /* 过渡效果 */
+}
+
+hr {
+    width: 100%;
+    border: 1.5px solid lightgray;
+}
+
+.tools {
+    margin-top: 5px;
+    padding-top: 5px;
+    width: 95%;
+}
+.toolnotice {
+    width: 95%;
+    margin-bottom: 5px;
+}
+.jsontool {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.jsontoolbox {
+    width: 40%;
+    height: 60%;
+    margin-left: 10PX;
+    margin-right: 15PX;
+}
