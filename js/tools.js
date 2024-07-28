@@ -4,9 +4,9 @@ function picktool(toolId) {
     }
 
     // 取消之前选中工具的高亮
-    var prePickedToolId = localStorage.getItem('curtool');
-    if (prePickedToolId != null) {
-        document.getElementById(prePickedToolId).classList.remove('highlight');
+    var lastUsedToolId = localStorage.getItem('lastUsedToolId');
+    if (lastUsedToolId != null) {
+        document.getElementById(lastUsedToolId).classList.remove('highlight');
     }
 
     var toolPath;
@@ -21,7 +21,7 @@ function picktool(toolId) {
     $("#curtool").load(toolPath);
 
     // 记住当前选中的工具并高亮展示
-    localStorage.setItem('curtool', toolId);
+    localStorage.setItem('lastUsedToolId', toolId);
     document.getElementById(toolId).classList.add('highlight')
 }
 

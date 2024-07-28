@@ -8,7 +8,7 @@
     <script src="js/jquery.min.js"></script>
 </head>
 <body>
-    <p>交流群(七月的杂货铺): 439510741(QQ)</p>
+    <p style="padding-left: 3%">交流群(七月的杂货铺): 439510741(QQ)</p>
     <div class="navigation">
         <ul class="siterow">
             <li class="siterowitem">
@@ -26,6 +26,9 @@
             <li class="siterowitem">
                 <a class="sitelink" href="https://juejin.cn/" target="_blank">稀土掘金</a>
             </li>
+            <li class="siterowitem">
+                <a class="sitelink" href="https://www.runoob.com//" target="_blank">菜鸟教程</a>
+            </li>
         </ul>
 
         <ul class="siterow">
@@ -39,7 +42,10 @@
                 <a class="sitelink" href="https://www.elastic.co/cn/" target="_blank">elastic</a>
             </li>
             <li class="siterowitem">
-                <a class="sitelink" href="https://www.runoob.com//" target="_blank">菜鸟教程</a>
+                <a class="sitelink" href="https://tech.meituan.com/" target="_blank">美团技术团队</a>
+            </li>
+            <li class="siterowitem">
+                <a class="sitelink" href="https://studygolang.com/" target="_blank">GO语言中文网</a>
             </li>
         </ul>
 
@@ -51,7 +57,10 @@
                 <a class="sitelink" href="https://www.w3cschool.cn/" target="_blank">w3cschool</a>
             </li>
             <li class="siterowitem">
-                <a class="sitelink" href="https://www.runoob.com//" target="_blank">菜鸟教程</a>
+                <a class="sitelink" href="https://developer.android.google.cn" target="_blank">安卓</a>
+            </li>
+            <li class="siterowitem">
+                <a class="sitelink" href="https://developer.apple.com/cn/vision" target="_blank">versionOS</a>
             </li>
         </ul>
 
@@ -79,9 +88,9 @@
 <script>
     // 页面加载时，初始化数据
     window.onload = function() {
-        // 1 获取之前最近用过的工具
-        var curtoolId = localStorage.getItem('curtool');
-        picktool(curtoolId);
+        // 获取最近用过的工具
+        var lastUsedToolId = localStorage.getItem('lastUsedToolId');
+        picktool(lastUsedToolId);
     };
 </script>
 </html>

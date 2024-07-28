@@ -7,17 +7,17 @@
     display: flex;
 }
 .siterowitem {
-    width: 150px
+    width: 140px
 }
 .sitecategorylink {
     color: mediumspringgreen;
-    font-size: 20px;
+    font-size: 17px;
 }
 .sitelink {
     display: block;
     width: 80%;
     color: black;
-    font-size: 20px;
+    font-size: 17px;
     overflow: hidden;
     text-overflow: ellipsis;
 }
